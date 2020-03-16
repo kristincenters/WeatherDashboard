@@ -28,9 +28,11 @@
 			<div class="row">
 				<div class="side">
 					Search for your destination
-					<form class="example">
-						<input type="text" placeholder="Search.." name="search" />
-						<button type="submit"><i class="fa fa-search"></i></button>
+					<form class="search">
+						<input type="text" placeholder="Search.." id="searchTerm" />
+						<button type="submit" id="findLocation" value="Location Search">
+							<i class="fa fa-search"></i>
+						</button>
 					</form>
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">Cras justo odio</li>
@@ -45,10 +47,11 @@
 					<div class="row">
 						<div class="col">
 							<div class="card">
-								<div id="city">city</div>
-								<div id="temp">temp</div>
-								<div id="wind">wind</div>
-								<div id="UV">UV</div>
+								<div id="currentDay"></div>
+								<div id="currentCity">city</div>
+								<div id="currentTemp">temp</div>
+								<div id="currentWind">wind</div>
+								<div id="currentUV">UV</div>
 							</div>
 						</div>
 					</div>
