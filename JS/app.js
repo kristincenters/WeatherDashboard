@@ -1,15 +1,18 @@
 //api key:&appid=36647473717c57282b7a80e5038cd6f3
 
-var searchTerm = $('#findLocation');
+//log current day
+var currentDate = moment().format('L');
+console.log(currentDate);
+
+//variables
+var searchTerm = $('#findCity');
 //var locationHistory = $('#priorLocation');
 var currentWeatherDay = $('#currentCity');
 var currentWeatherTemp = $('#currentTemp');
 var currentWeatherWind = $('#currentWind');
 var currentWeatherUV = $('#currentUV');
 
-var currentDate = moment().format('L');
-console.log(currentDate);
-
+//search function and ajax call
 function searchLocation(findLocation) {
 	//capture user search text
 	var locationInput = $('#searchTerm')
@@ -28,7 +31,7 @@ function searchLocation(findLocation) {
 		console.log(queryURL);
 		console.log(response);
 	});
-	//searchLocation();
+	searchLocation();
 
 	$('#findLocation').on('click'),
 		function(event) {
@@ -38,4 +41,3 @@ function searchLocation(findLocation) {
 	// new div for city content
 	$('#currentCity').empty() + currentDate;
 }
-findLocation();
