@@ -13,7 +13,7 @@ var currentWeatherWind = $('#currentWind');
 var currentWeatherUV = $('#currentUV');
 
 //search function and ajax call
-function searchLocation(findLocation) {
+function searchLocation() {
 	//capture user search text
 	var locationInput = $('#searchTerm')
 		.val()
