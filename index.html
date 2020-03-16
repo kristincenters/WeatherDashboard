@@ -19,15 +19,67 @@
 			src="https://kit.fontawesome.com/0ded37e0fb.js"
 			crossorigin="anonymous"
 		></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 		<title>Weather Dashboard</title>
 	</head>
 	<body>
-		<script
-			src="https://code.jquery.com/jquery-3.4.1.js"
-			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-			crossorigin="anonymous"
-		></script>
+		<div class="container">
+			<div class="row">
+				<div class="side">
+					Search for your destination
+					<form class="example">
+						<input type="text" placeholder="Search.." name="search" />
+						<button type="submit"><i class="fa fa-search"></i></button>
+					</form>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Cras justo odio</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Morbi leo risus</li>
+						<li class="list-group-item">Porta ac consectetur ac</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</div>
+				<div class="main">
+					<h1>Weather Dashboard</h1>
+					<div class="row">
+						<div class="col">
+							<div class="card">
+								<div id="city">city</div>
+								<div id="temp">temp</div>
+								<div id="wind">wind</div>
+								<div id="UV">UV</div>
+							</div>
+						</div>
+					</div>
+					<br />
+					<h2>5-Day Forcast</h2>
+					<div class="row">
+						<div class="col">
+							<div class="card">
+								<div id="day1date">Date</div>
+								<div id="icon"></div>
+								<div id="day1temp">Temp</div>
+								<div id="Humidity">Humidity</div>
+							</div>
+						</div>
 
-		<script src="app.js" type="text/javascript"></script>
+						<div class="col">
+							<div class="card">..</div>
+						</div>
+						<div class="col">
+							<div class="card">..</div>
+						</div>
+						<div class="col">
+							<div class="card">..</div>
+						</div>
+						<div class="col">
+							<div class="card">..</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="JS/app.js" type="text/javascript"></script>
 	</body>
 </html>

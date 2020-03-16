@@ -1,0 +1,105 @@
+* {
+	box-sizing: border-box;
+}
+
+/* Style the search field */
+form.example input[type='text'] {
+	padding: 10px;
+	font-size: 17px;
+	border: 1px solid grey;
+	float: left;
+	width: 80%;
+	background: #f1f1f1;
+}
+
+/* Style the submit button */
+form.example button {
+	float: left;
+	width: 20%;
+	padding: 10px;
+	background: #2196f3;
+	color: white;
+	font-size: 17px;
+	border: 1px solid grey;
+	border-left: none; /* Prevent double borders */
+	cursor: pointer;
+}
+
+form.example button:hover {
+	background: #0b7dda;
+}
+
+/* Clear floats */
+form.example::after {
+	content: '';
+	clear: both;
+	display: table;
+}
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float five columns side by side */
+.column {
+	float: left;
+	padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {
+	margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+/* Style the counter cards */
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+	padding: 16px;
+	text-align: center;
+	background-color: #f1f1f1;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens 
+@media screen and (max-width: 800px) {
+	.column {
+		width: 100%;
+		display: block;
+		margin-bottom: 20px;
+	}
+}
+*/
+/* Ensure proper sizing */
+* {
+	box-sizing: border-box;
+}
+
+/* Column container */
+.row {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+	flex: 30%; /* Set the width of the sidebar */
+	background-color: #f1f1f1; /* Grey background color */
+	padding: 20px; /* Some padding */
+}
+
+/* Main column */
+.main {
+	flex: 70%; /* Set the width of the main content */
+	background-color: white; /* White background color */
+	padding: 20px; /* Some padding */
+}
