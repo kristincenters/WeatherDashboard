@@ -2,22 +2,12 @@
 var currentDate = moment().format('L');
 console.log(currentDate);
 
-//variables
-//var searchTerm = $('#findCity');
-//var locationHistory = $('#priorLocation');
-//var locationNameEl = $('<h2>').text(response.name);
-//var currentWeatherTempEl = $('<p>').text('Temperature: ' + response.main.temp);
-//var currentWeatherHumidityEl = $('<p>').text('Humidity: ' + response.main.humidity);
-//var currentWeatherWindEl = $('<p>').text('Wind Speed: ' + response.main.wind.speed);
-//var currentWeatherUV = $('#currentUV');
-//var renderCityDate = locationNameEl.append('' + currentDate);
-
-//search function and ajax call
-
+//create queryURL and ajax call
 var searchWeather = function(weather) {
 	var queryURL =
 		'https://api.openweathermap.org/data/2.5/weather?q=' +
 		weather +
+		'&units=imperial' +
 		'&appid=36647473717c57282b7a80e5038cd6f3';
 	$.ajax({
 		url: queryURL,
@@ -25,10 +15,29 @@ var searchWeather = function(weather) {
 	}).then(function(response) {
 		console.log(queryURL);
 		console.log(response);
+
+		//$('#currentCity').empty() + currentDate;
+
+		//render object data to html
+		$('.currentCity').html('<h2>' + response.name + currentDate);
+		console.log(response.name);
+
+		$('.currentHumid').html(
+			'<p>' + 'Humidity: ' + response.main.humidity + ' %'
+		);
+		$('.currentWind').html(
+			'<p>' + 'Wind Speed: ' + response.wind.speed + ' miles/hour'
+		);
+
+		//var tempF = (response.main.temp - 273.15) * 1.8 + 32;
+		$('.tempF').html('<p>' + 'Temperature: ' + response.main.temp);
+		//tempF.toFixed(2));
 	});
 };
 searchWeather('Nashville');
-/*
+
+//$('#weatherList').html(newDiv);
+
 $('#findCity').on('click'),
 	function(event) {
 		event.preventDefault();
@@ -44,13 +53,7 @@ $('#findCity').on('click'),
 			url: queryURL,
 			method: 'GET'
 		}).then(function(response) {
+			localStorage.setItem('findCity', city);
 			$('#render-city').text(JSON.stringify(response));
 		});
 	};
-*/
-//	localStorage.setItem('findCity', city);
-
-//	};
-//searchLocation();
-// new div for city content
-//$('#currentCity').empty() + currentDate;
