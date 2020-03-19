@@ -29,15 +29,13 @@ var searchWeather = function(weather) {
 		console.log(response);
 
 		//render current weather data to html
-		$('.currentCity').html(
-			'<h2>' +
-				response.name +
-				'&nbsp' +
-				currentDate +
-				'&nbsp' +
-				response.weather[0].icon
-		);
+		$('.currentCity').html('<h2>' + response.name + '&nbsp' + currentDate);
 		console.log(response.name);
+		var weatherIconCode = response.weather[0].icon;
+		var weatherIconCode =
+			'http://openweathermap.org/img/wn/' + weatherIconCode + '.png';
+		$('.icon').html("<img src='" + weatherIconCode + "'>");
+		console.log(response.weather[0].icon);
 
 		$('.currentHumid').html(
 			'<p>' + 'Humidity: ' + response.main.humidity + ' %'
