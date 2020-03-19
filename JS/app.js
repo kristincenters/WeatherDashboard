@@ -1,25 +1,35 @@
 //log current day
 var currentDate = moment().format('L');
 console.log(currentDate);
+//api key
+var key = '36647473717c57282b7a80e5038cd6f3';
+// store search history
+var citySearch = [];
+//set localStorage
+if (localStorage.getItem('locations') == null) {
+	citySearch = JSON.parse(localStorage.getItem('locations'));
+	//citySearch.push(locations);
+	//location or city input
+	var weather = ''; //|| cityText[0];
+}
 
-//create queryURL and ajax call
+//generate current weather day data
 var searchWeather = function(weather) {
 	var queryURL =
 		'https://api.openweathermap.org/data/2.5/weather?q=' +
 		weather +
 		'&units=imperial' +
-		'&appid=36647473717c57282b7a80e5038cd6f3';
+		'&appid=' +
+		key;
+	console.log(queryURL);
 	$.ajax({
 		url: queryURL,
 		method: 'GET'
 	}).then(function(response) {
-		console.log(queryURL);
 		console.log(response);
 
-		//$('#currentCity').empty() + currentDate;
-
 		//render current weather data to html
-		$('.currentCity').html('<h2>' + response.name + currentDate);
+		$('.currentCity').html('<h2>' + response.name + '&nbsp' + currentDate);
 		console.log(response.name);
 
 		$('.currentHumid').html(
@@ -30,22 +40,23 @@ var searchWeather = function(weather) {
 		);
 		//var tempF = (response.main.temp - 273.15) * 1.8 + 32;
 		$('.tempF').html('<p>' + 'Temperature: ' + response.main.temp);
-		//tempF.toFixed(2));
 	});
 };
 searchWeather('Nashville');
-var queryURLforecast =
-	'https://pro.openweathermap.org/data/2.5/forecast/daily?q=' +
-	fiveDay +
-	'&units=imperial' +
-	'&appid=36647473717c57282b7a80e5038cd6f3';
-
+//generate 5-day forecast data
 var fiveDayForecast = function(fiveDay) {
+	queryURLforecast =
+		'https://pro.openweathermap.org/data/2.5/forecast/daily?q=' +
+		fiveDay +
+		'&units=imperial' +
+		'&appid=' +
+		key;
+	console.log(queryURL);
+
 	$.ajax({
 		url: queryURLforecast,
 		method: 'GET'
 	}).then(function(response) {
-		console.log(queryURL);
 		console.log(response);
 
 		$('#day1date').html('<p>' + response.dt_txt);
@@ -54,40 +65,29 @@ var fiveDayForecast = function(fiveDay) {
 		$('#day1temp').html('<p>' + 'Humidity: ' + response.main.humidity);
 	});
 };
-
-fiveDayForecast('Nashville');
+//fiveDayForecast();
 
 var citySearchInput = document.querySelector('#city-text');
 var citySearchForm = document.querySelector('#city-form');
 var citySearchList = document.querySelector('#city-list');
-var citySearch = [];
 
-/*var renderSearchedCities = function(citySearchList) {
-	for (i = 0; i < citySearch.length; i++) {
-		citySearchList.innerText = '';
-		var cityList = document.createElement('li');
-		cityList.innerText = citySearch[i];
-		button.addEventListener('submit'),
-			function() {
-				citySearchList.appendChild(cityList);
-			};
-	}
-};
-renderSearchedCities();
-*/
-var ul = document.querySelector('ul');
 $('#cityForm').on('click', function(event) {
-	var ul = $('#cityList');
-	var li = document.createElement('li');
 	event.preventDefault();
-	var inputVal = $('#cityText').val();
-	//cityText.Text = '';
+	//create li and append ul
+	var li = $('<li>');
+	//$('li').attr('list-group-item');
+	$('#cityList').append(li);
 
-	citySearch.push(inputVal);
+	var cityInput = $('#cityText')
+		.val()
+		.trim();
 
-	localStorage.setItem('cityText', inputVal);
+	//create localStorage
+	li.text(cityInput);
 
-	var newCityList = localStorage.getItem('cityText');
-	$('#cityText').val(newCityList);
-	ul.append(li);
+	localStorage.setItem('cityText', JSON.stringify(cityText));
+
+	searchWeather(cityInput);
+
+	$('#cityText').val('');
 });
