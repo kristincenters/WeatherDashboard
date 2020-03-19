@@ -13,7 +13,7 @@ if (localStorage.getItem('locations') == null) {
 	var weather = ''; //|| cityText[0];
 }
 
-//generate current weather day data
+//generate current weather day data based on searched city
 var searchWeather = function(weather) {
 	var queryURL =
 		'https://api.openweathermap.org/data/2.5/weather?q=' +
@@ -29,7 +29,14 @@ var searchWeather = function(weather) {
 		console.log(response);
 
 		//render current weather data to html
-		$('.currentCity').html('<h2>' + response.name + '&nbsp' + currentDate);
+		$('.currentCity').html(
+			'<h2>' +
+				response.name +
+				'&nbsp' +
+				currentDate +
+				'&nbsp' +
+				response.weather[0].icon
+		);
 		console.log(response.name);
 
 		$('.currentHumid').html(
@@ -44,14 +51,15 @@ var searchWeather = function(weather) {
 };
 searchWeather('Nashville');
 //generate 5-day forecast data
-var fiveDayForecast = function(fiveDay) {
+function forecast(fiveDay) {
 	queryURLforecast =
 		'https://pro.openweathermap.org/data/2.5/forecast/daily?q=' +
 		fiveDay +
 		'&units=imperial' +
 		'&appid=' +
+		'cnt=5' +
 		key;
-	console.log(queryURL);
+	console.log(queryURLforecast);
 
 	$.ajax({
 		url: queryURLforecast,
@@ -64,7 +72,7 @@ var fiveDayForecast = function(fiveDay) {
 		$('#day1temp').html('<p>' + 'Temp: ' + response.main.temp);
 		$('#day1temp').html('<p>' + 'Humidity: ' + response.main.humidity);
 	});
-};
+}
 //fiveDayForecast();
 
 var citySearchInput = document.querySelector('#city-text');
