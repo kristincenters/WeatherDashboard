@@ -8,8 +8,8 @@ var citySearch = [];
 //set localStorage
 if (localStorage.getItem('locations') == null) {
 	citySearch = JSON.parse(localStorage.getItem('locations'));
-	//citySearch.push(locations);
-	//location or city input
+
+	//location or city user input array
 	var weather = ''; //|| cityText[0];
 }
 
@@ -46,6 +46,7 @@ var searchWeather = function(weather) {
 		);
 		//var tempF = (response.main.temp - 273.15) * 1.8 + 32;
 		$('.tempF').html('<p>' + 'Temperature: ' + response.main.temp);
+		//need to round temp and add degree mark
 	});
 };
 searchWeather('Nashville');
@@ -71,6 +72,7 @@ function forecast(fiveDay) {
 				.add(i + 1, 'day')
 				.format('L')}
 		</p>*/
+		//post 5 day content to html
 		$('.day1temp').html('<p>' + 'Temp: ' + response.list[0].main.temp);
 		$('.day1Humidity').html(
 			'<p>' + 'Humidity: ' + response.list[0].main.humidity

@@ -4,11 +4,11 @@
 
 ## Technologies
 
-HTML, CSS, Bootstrap, JavaScript
+HTML, CSS, Bootstrap, JavaScript, AJAX, JQuery
 
 ## Description
 
-Check the current weather for the locations on your next trip with this weather dashboard application. You can log and save destination locations in the side panel.
+Check the current weather for the locations on your next trip with this weather dashboard. You can log and save destination locations in the side panel.
 
 ## Contact
 
