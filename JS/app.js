@@ -21,6 +21,7 @@ var searchWeather = function(weather) {
 		'&units=imperial' +
 		'&appid=' +
 		key;
+
 	console.log(queryURL);
 	$.ajax({
 		url: queryURL,
@@ -48,14 +49,14 @@ var searchWeather = function(weather) {
 	});
 };
 searchWeather('Nashville');
+
 //generate 5-day forecast data
 function forecast(fiveDay) {
 	queryURLforecast =
-		'https://pro.openweathermap.org/data/2.5/forecast/daily?q=' +
+		'https://api.openweathermap.org/data/2.5/forecast?q=' +
 		fiveDay +
 		'&units=imperial' +
 		'&appid=' +
-		'cnt=5' +
 		key;
 	console.log(queryURLforecast);
 
@@ -64,14 +65,39 @@ function forecast(fiveDay) {
 		method: 'GET'
 	}).then(function(response) {
 		console.log(response);
+		/*<p class='currentDate'>
+			$
+			{moment()
+				.add(i + 1, 'day')
+				.format('L')}
+		</p>*/
+		$('.day1temp').html('<p>' + 'Temp: ' + response.list[0].main.temp);
+		$('.day1Humidity').html(
+			'<p>' + 'Humidity: ' + response.list[0].main.humidity
+		);
 
-		$('#day1date').html('<p>' + response.dt_txt);
-		console.log(response.dt_txt);
-		$('#day1temp').html('<p>' + 'Temp: ' + response.main.temp);
-		$('#day1temp').html('<p>' + 'Humidity: ' + response.main.humidity);
+		$('.day2temp').html('<p>' + 'Temp: ' + response.list[1].main.temp);
+		$('.day2Humidity').html(
+			'<p>' + 'Humidity: ' + response.list[1].main.humidity
+		);
+
+		$('.day3temp').html('<p>' + 'Temp: ' + response.list[2].main.temp);
+		$('.day3Humidity').html(
+			'<p>' + 'Humidity: ' + response.list[2].main.humidity
+		);
+
+		$('.day4temp').html('<p>' + 'Temp: ' + response.list[3].main.temp);
+		$('.day4Humidity').html(
+			'<p>' + 'Humidity: ' + response.list[3].main.humidity
+		);
+
+		$('.day5temp').html('<p>' + 'Temp: ' + response.list[4].main.temp);
+		$('.day5Humidity').html(
+			'<p>' + 'Humidity: ' + response.list[4].main.humidity
+		);
 	});
 }
-//fiveDayForecast();
+forecast('Nashville');
 
 var citySearchInput = document.querySelector('#city-text');
 var citySearchForm = document.querySelector('#city-form');
@@ -94,6 +120,7 @@ $('#cityForm').on('click', function(event) {
 	localStorage.setItem('cityText', JSON.stringify(cityText));
 
 	searchWeather(cityInput);
+	forecast(cityInput);
 
 	$('#cityText').val('');
 });
